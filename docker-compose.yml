@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  helloserver:
+    container_name: helloserver
+    build: 
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+
+  envoy:
+    image: envoyproxy/envoy-dev:e4955aed5694f9935d674419dbb364e744f697b4
+    volumes:
+      - ./envoy/envoy.yaml:/etc/envoy/envoy.yaml
+    ports:
+      - "8080:8080"      
